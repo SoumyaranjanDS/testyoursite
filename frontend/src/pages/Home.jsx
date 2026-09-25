@@ -25,10 +25,10 @@ const Home = () => {
             
 
             <h1 className="flex flex-col mb-8 font-heading">
-              <span className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-milky mb-2 leading-tight tracking-wider">
+              <span className="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-gray-900 dark:text-milky mb-2 leading-tight tracking-wider">
                 A better way to
               </span>
-              <span className="text-7xl md:text-8xl lg:text-[7.5rem] font-black text-milky leading-none flex items-baseline">
+              <span className="text-7xl md:text-8xl lg:text-[7.5rem] font-black text-gray-900 dark:text-milky leading-none flex items-baseline">
                 Load Test
                 <span className="inline-block w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 bg-accent rounded-full ml-2"></span>
               </span>
@@ -44,14 +44,14 @@ const Home = () => {
               {/* "Pop Type" Pill Button */}
               <Link
                 to="/signup"
-                className="group flex items-center justify-center gap-2 bg-[#1c1c1e] hover:bg-[#2c2c2e] text-milky border border-white/10 px-8 py-3.5 rounded-full font-medium transition-all shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.23)] hover:-translate-y-0.5 active:translate-y-0"
+                className="group flex items-center justify-center gap-2 bg-gray-100 dark:bg-[#1c1c1e] hover:bg-[#2c2c2e] text-gray-900 dark:text-milky border border-gray-200 dark:border-white/10 px-8 py-3.5 rounded-full font-medium transition-all shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.23)] hover:-translate-y-0.5 active:translate-y-0"
               >
                 Start Free Test
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium text-[var(--muted)] hover:text-milky transition-colors border border-transparent hover:bg-white/5">
+              <Link to="/docs" className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium text-[var(--muted)] hover:text-gray-900 dark:text-milky transition-colors border border-transparent hover:bg-gray-100 dark:hover:bg-white/5">
                 View Documentation
-              </button>
+              </Link>
             </div>
           </div>
 
