@@ -11,8 +11,16 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { scrollY } = useScroll();
 
-  // Simulated Auth State
-  const isLoggedIn = false; // Toggle this to see user icon vs login button
+  // Actual Auth State
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+
+  useEffect(() => {
+    const handleAuthChange = () => {
+      setIsLoggedIn(!!localStorage.getItem('token'));
+    };
+    window.addEventListener('authChange', handleAuthChange);
+    return () => window.removeEventListener('authChange', handleAuthChange);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();

@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowLeft, Terminal, Activity } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../components/common/Logo';
+import api from '../api';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+    try {
+      const response = await api.post('/auth/login', { email, password });
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data));
+      window.dispatchEvent(new Event('authChange'));
+      navigate('/');
+    } catch (err) {
+      setError(err.response?.data?.message || 'An error occurred during login');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white dark:bg-[#09090b] flex">
       {/* Left Panel - Graphic/Branding */}
@@ -69,11 +93,15 @@ const Login = () => {
             <div className="h-px bg-white/10 flex-1"></div>
           </div>
 
-          <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); console.log('Login submitted'); }}>
+          {error && <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 text-red-500 rounded-lg text-sm">{error}</div>}
+
+          <form className="space-y-5" onSubmit={handleLogin}>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-300">Email Address</label>
+              <label className="text-sm font-medium text-gray-900 dark:text-gray-300">Email Address</label>
               <input 
                 type="email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
                 className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-[#121214] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white focus:outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1] transition-all placeholder:text-gray-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
                 required
@@ -82,11 +110,13 @@ const Login = () => {
 
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-gray-300">Password</label>
+                <label className="text-sm font-medium text-gray-900 dark:text-gray-300">Password</label>
                 <a href="#" className="text-sm text-[#6366f1] hover:text-[#4f46e5] transition-colors">Forgot password?</a>
               </div>
               <input 
                 type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-[#121214] border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white focus:outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1] transition-all placeholder:text-gray-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
                 required
@@ -95,9 +125,10 @@ const Login = () => {
 
             <button 
               type="submit"
-              className="w-full bg-[#6366f1] hover:bg-[#4f46e5] shadow-[0_4px_14px_0_rgba(99,102,241,0.39)] hover:shadow-[0_6px_20px_rgba(99,102,241,0.23)] hover:-translate-y-0.5 text-gray-900 dark:text-white font-medium py-3 rounded-xl transition-all mt-6"
+              disabled={loading}
+              className="w-full bg-[#6366f1] hover:bg-[#4f46e5] shadow-[0_4px_14px_0_rgba(99,102,241,0.39)] hover:shadow-[0_6px_20px_rgba(99,102,241,0.23)] hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0 text-white font-medium py-3 rounded-xl transition-all mt-6"
             >
-              Sign in
+              {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
 
