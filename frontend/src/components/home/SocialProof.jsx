@@ -31,7 +31,7 @@ const outerNodes = [
     type: "avatar",
     icon: Globe,
     color: "text-blue-400",
-    bg: "bg-white/5 border-white/10",
+    bg: "bg-white/5 border-gray-200 dark:border-white/10",
     startAngle: 15,
   },
   {
@@ -39,7 +39,7 @@ const outerNodes = [
     icon: Activity,
     text: "94% CPU",
     color: "text-rose-400",
-    bg: "bg-[#121214] border-white/10",
+    bg: "bg-gray-50 dark:bg-[#121214] border-gray-200 dark:border-white/10",
     startAngle: 65,
   },
 ];
@@ -50,7 +50,7 @@ const innerNodes = [
     icon: Zap,
     text: "1.2s ms",
     color: "text-amber-400",
-    bg: "bg-[#121214] border-white/10",
+    bg: "bg-gray-50 dark:bg-[#121214] border-gray-200 dark:border-white/10",
     startAngle: -30,
   },
   {
@@ -154,14 +154,14 @@ const OrbitingNode = ({ node, radius, duration }) => {
 
 const SocialProof = () => {
   return (
-    <section className="pt-32 pb-16 bg-[#09090b] relative overflow-hidden">
+    <section className="pt-32 pb-16 bg-white dark:bg-[#09090b] relative overflow-hidden">
       {/* Background Arcs Container */}
       <div className="absolute top-[60px] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] pointer-events-none z-0">
         {/* Outer Arc */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] rounded-full border-[1.5px] border-white/5" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] rounded-full border-[1.5px] border-gray-200 dark:border-white/5" />
 
         {/* Inner Arc */}
-        <div className="absolute top-[150px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full border-[1.5px] border-white/5" />
+        <div className="absolute top-[150px] left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full border-[1.5px] border-gray-200 dark:border-white/5" />
 
         {/* Orbiting Elements */}
         {outerNodes.map((node, i) => (
@@ -181,10 +181,10 @@ const SocialProof = () => {
         <div className="flex flex-wrap justify-center gap-12 md:gap-24 mb-12">
           {stats.map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center">
-              <div className="text-3xl md:text-5xl font-medium text-white mb-2">
+              <div className="text-3xl md:text-5xl font-medium text-gray-900 dark:text-white mb-2">
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} isFloat={stat.isFloat} />
               </div>
-              <div className="text-sm md:text-base text-gray-500 font-medium">
+              <div className="text-sm md:text-base text-gray-500 dark:text-gray-500 font-medium">
                 {stat.label}
               </div>
             </div>
@@ -192,7 +192,7 @@ const SocialProof = () => {
         </div>
 
         {/* Big Title */}
-        <h2 className="text-2xl md:text-4xl font-light text-white mb-10 leading-tight max-w-2xl mx-auto">
+        <h2 className="text-2xl md:text-4xl font-light text-gray-900 dark:text-white mb-10 leading-tight max-w-2xl mx-auto">
           We Build The Most Resilient Systems For Engineering Teams
         </h2>
 
@@ -203,7 +203,7 @@ const SocialProof = () => {
             return (
               <div
                 key={idx}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-default"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-white/10 bg-white/5 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:text-white hover:bg-white/10 transition-colors cursor-default"
               >
                 <Icon className="w-4 h-4" />
                 <span className="text-sm font-medium">{pill.text}</span>
