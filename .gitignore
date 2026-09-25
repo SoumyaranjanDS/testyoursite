@@ -1,3 +1,5 @@
 node_modules/
 ecosystem_roadmap.md
 .env
+load-test.js
+local-load-test.js
