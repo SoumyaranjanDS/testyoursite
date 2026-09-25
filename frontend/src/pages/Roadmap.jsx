@@ -111,17 +111,17 @@ const NodeCard = ({ node }) => {
     ? "border-accent/50"
     : isActive
       ? "border-accent"
-      : "border-white/5";
+      : "border-gray-200 dark:border-white/5";
   const bgClass = isCompleted
     ? "bg-accent/5"
     : isActive
-      ? "bg-[#121214]"
-      : "bg-[#121214]/50";
+      ? "bg-gray-50 dark:bg-[#121214]"
+      : "bg-gray-50 dark:bg-[#121214]/50";
   const titleClass = isCompleted
-    ? "text-white"
+    ? "text-gray-900 dark:text-white"
     : isActive
       ? "text-accent"
-      : "text-gray-500";
+      : "text-gray-500 dark:text-gray-500";
   const shadowClass = isActive
     ? "shadow-[0_0_20px_rgba(99,102,241,0.2),inset_0_1px_0_rgba(255,255,255,0.1)]"
     : "shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]";
@@ -135,7 +135,7 @@ const NodeCard = ({ node }) => {
         <h4 className={`text-sm font-bold ${titleClass} text-center`}>
           {node.title}
         </h4>
-        <p className="text-[10px] text-gray-400 text-center leading-tight px-1">
+        <p className="text-[10px] text-gray-600 dark:text-gray-400 text-center leading-tight px-1">
           {node.desc}
         </p>
       </div>
@@ -147,7 +147,7 @@ const NodeCard = ({ node }) => {
             style={{ width: `${node.progress}%` }}
           />
         </div>
-        <span className="text-[10px] font-mono text-gray-500">
+        <span className="text-[10px] font-mono text-gray-500 dark:text-gray-500">
           {node.progress}%
         </span>
       </div>
@@ -157,15 +157,15 @@ const NodeCard = ({ node }) => {
 
 const Roadmap = () => {
   return (
-    <section id="roadmap" className="py-24 bg-[#09090b] relative flex flex-col items-center overflow-x-hidden border-t border-white/5">
+    <section
+      id="roadmap"
+      className="py-24 bg-white dark:bg-[#09090b] relative flex flex-col items-center overflow-x-hidden border-t border-gray-200 dark:border-white/5"
+    >
       <div className="text-center mb-16 relative z-10 px-4">
-        <div className="inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-mono text-gray-400 uppercase tracking-widest mb-6">
-          Learning Path
-        </div>
-        <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 font-heading">
+        <h2 className="text-4xl md:text-5xl font-medium text-gray-900 dark:text-white mb-4 font-heading">
           The roadmap<span className="text-accent">.</span>
         </h2>
-        <p className="text-gray-400 max-w-lg mx-auto text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto text-sm leading-relaxed">
           Master load testing and performance engineering in the optimal order.
           Each topic builds on the previous ones.
         </p>
