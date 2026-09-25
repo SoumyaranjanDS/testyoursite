@@ -99,7 +99,7 @@ const Integrations = () => {
               </span>
             </div>
           </div>
-          <span className="text-gray-900 dark:text-white font-medium text-base md:text-lg tracking-tight pb-2 sm:pb-0">
+          <span className="text-gray-900 dark:text-white font-medium text-base md:text-lg pb-2 sm:pb-0">
             Run a free diagnostic
           </span>
         </div>
