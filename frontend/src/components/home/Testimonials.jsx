@@ -26,11 +26,11 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="py-32 bg-[#09090b] relative border-t border-white/5 overflow-hidden"
+      className="py-32 bg-white dark:bg-[#09090b] relative border-t border-gray-200 dark:border-white/5 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-24 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-medium text-white mb-4 font-heading">
+          <h2 className="text-4xl md:text-5xl font-medium text-gray-900 dark:text-white mb-4 font-heading">
             Trusted by engineering teams
           </h2>
         </div>
@@ -41,11 +41,11 @@ const Testimonials = () => {
               {/* Back Layer (Author Info) */}
               <div className="absolute bottom-0 left-0 w-[85%] h-[160px] bg-gradient-to-br from-blue-600/20 to-purple-600/10 border border-blue-500/20 rounded-[2rem] flex items-end p-6 z-0 shadow-lg group-hover:from-blue-600/30 group-hover:to-purple-600/20 transition-colors duration-500">
                 <div className="flex items-center gap-4 w-full">
-                  <div className="w-12 h-12 rounded-full bg-[#1c1c1e] border border-white/10 flex items-center justify-center text-lg font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] shrink-0 z-10">
+                  <div className="w-12 h-12 rounded-full bg-gray-100 dark:bg-[#1c1c1e] border border-gray-200 dark:border-white/10 flex items-center justify-center text-lg font-bold text-gray-900 dark:text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] shrink-0 z-10">
                     {review.name.charAt(0)}
                   </div>
                   <div className="z-10 truncate">
-                    <div className="font-bold text-white text-base tracking-tight truncate">
+                    <div className="font-bold text-gray-900 dark:text-white text-base tracking-tight truncate">
                       {review.name}
                     </div>
                     <div className="text-xs text-blue-300 font-medium truncate mt-0.5">
@@ -56,10 +56,10 @@ const Testimonials = () => {
               </div>
 
               {/* Front Layer (Quote Box) */}
-              <div className="relative z-10 w-[92%] ml-auto bg-[#1c1c1e] border border-white/10 rounded-[2rem] p-8 shadow-[0_24px_48px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] group-hover:-translate-y-2 transition-transform duration-500">
+              <div className="relative z-10 w-[92%] ml-auto bg-gray-100 dark:bg-[#1c1c1e] border border-gray-200 dark:border-white/10 rounded-[2rem] p-8 shadow-[0_24px_48px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] group-hover:-translate-y-2 transition-transform duration-500">
                 {/* Floating Decorative Quote Mark (Top Left) */}
                 <div className="absolute -top-6 -left-6 w-12 h-12 bg-[#DC382D] rounded-2xl flex items-center justify-center shadow-lg border border-red-400/30 z-20">
-                  <Quote className="w-6 h-6 text-white fill-current" />
+                  <Quote className="w-6 h-6 text-gray-900 dark:text-white fill-current" />
                 </div>
 
                 {/* Decorative Quote Mark (Bottom Right) */}
@@ -68,7 +68,7 @@ const Testimonials = () => {
                 </div>
 
                 {/* Stars aligned to top right */}
-                <div className="flex items-center gap-1 mb-6 justify-end pb-4 border-b border-white/5 relative z-10">
+                <div className="flex items-center gap-1 mb-6 justify-end pb-4 border-b border-gray-200 dark:border-white/5 relative z-10">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <svg
                       key={star}
