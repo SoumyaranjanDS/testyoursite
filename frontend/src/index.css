@@ -1,18 +1,21 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-sans: 'Helvetica', 'Inter', 'Arial', sans-serif;
   --font-heading: 'Coolvetica', 'Helvetica', 'Inter', sans-serif;
-  
+
   --color-primary-500: #3b82f6;
   --color-primary-600: #2563eb;
   --color-bg-dark: #09090b;
   --color-bg-light: #ffffff;
-  
+
   --color-milky: #faf8f0;
   --color-accent: #6366f1;
+
+  --color-secondary: #121214;
+  --shadow-top: inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 @layer base {
@@ -24,6 +27,7 @@
     --card: #ffffff;
     --card-foreground: #09090b;
   }
+
   .dark {
     --background: var(--color-bg-dark);
     --foreground: #fafafa;
@@ -32,23 +36,33 @@
     --card: #09090b;
     --card-foreground: #fafafa;
   }
-  
+
   body {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
   }
 
   @keyframes flow {
-    0% { stroke-dashoffset: 24; }
-    100% { stroke-dashoffset: 0; }
+    0% {
+      stroke-dashoffset: 24;
+    }
+
+    100% {
+      stroke-dashoffset: 0;
+    }
   }
-  
+
   .animate-flow {
     animation: flow 1s linear infinite;
   }
