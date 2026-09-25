@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   AlertTriangle,
   Cpu,
@@ -10,6 +10,8 @@ import {
 import { motion } from "framer-motion";
 
 const Integrations = () => {
+  const containerRef = useRef(null);
+
   // Top Polaroid Cards (Performance Issues)
   const topPolaroids = [
     { Icon: Cpu, name: "CPU 99%", color: "text-orange-400", rotate: -8, y: 15 },
@@ -51,7 +53,7 @@ const Integrations = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#09090b] relative overflow-hidden flex flex-col items-center justify-center border-t border-white/5 min-h-[90vh]">
+    <section ref={containerRef} className="py-24 bg-white dark:bg-[#09090b] relative overflow-hidden flex flex-col items-center justify-center border-t border-gray-200 dark:border-white/5 min-h-[90vh]">
       {/* Top Polaroids / Tech Cards */}
       <div className="flex items-center justify-center gap-4 md:gap-8 mb-16 relative z-10 flex-wrap px-4">
         {topPolaroids.map((item, i) => {
@@ -64,12 +66,12 @@ const Integrations = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
               style={{ rotate: item.rotate }}
-              className="w-20 h-24 md:w-24 md:h-28 bg-[#1c1c1e] p-2 md:p-2.5 rounded-xl border border-white/10 shadow-[0_12px_32px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col items-center justify-between hover:-translate-y-2 hover:rotate-0 hover:z-20 transition-all duration-300 cursor-pointer"
+              className="w-20 h-24 md:w-24 md:h-28 bg-gray-100 dark:bg-[#1c1c1e] p-2 md:p-2.5 rounded-xl border border-gray-200 dark:border-white/10 shadow-[0_12px_32px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] flex flex-col items-center justify-between hover:-translate-y-2 hover:rotate-0 hover:z-20 transition-all duration-300 cursor-pointer"
             >
-              <div className="w-full h-12 md:h-16 bg-[#09090b] rounded-lg flex items-center justify-center overflow-hidden border border-white/5 shadow-inner">
+              <div className="w-full h-12 md:h-16 bg-white dark:bg-[#09090b] rounded-lg flex items-center justify-center overflow-hidden border border-gray-200 dark:border-white/5 shadow-inner">
                 <Icon className={`w-6 h-6 md:w-8 md:h-8 ${item.color}`} />
               </div>
-              <span className="text-[10px] md:text-xs font-medium text-gray-400 tracking-wider font-mono">
+              <span className="text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 tracking-wider font-mono">
                 {item.name}
               </span>
             </motion.div>
@@ -79,25 +81,25 @@ const Integrations = () => {
 
       {/* Center Text & Call to Action */}
       <div className="text-center relative z-20 mb-20 px-4">
-        <h2 className="text-4xl md:text-6xl font-medium text-white mb-10 max-w-3xl mx-auto leading-[1.1] font-heading">
+        <h2 className="text-4xl md:text-6xl font-medium text-gray-900 dark:text-white mb-10 max-w-3xl mx-auto leading-[1.1] font-heading">
           Have Performance Issues <br className="hidden md:block" /> and need
           help?
         </h2>
 
         {/* Action Button */}
-        <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-0 p-2 sm:pr-8 bg-[#1c1c1e] rounded-3xl sm:rounded-full border border-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] cursor-pointer hover:bg-[#252528] hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto">
+        <div className="inline-flex flex-col sm:flex-row items-center gap-4 sm:gap-0 p-2 sm:pr-8 bg-gray-100 dark:bg-[#1c1c1e] rounded-3xl sm:rounded-full border border-gray-200 dark:border-white/10 shadow-[0_16px_48px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] cursor-pointer hover:bg-[#252528] hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto">
           <div className="flex items-center sm:mr-6 p-2 sm:p-0">
             <div className="w-12 h-12 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shadow-lg z-20 backdrop-blur-md">
               <Activity className="w-5 h-5 text-blue-400" />
             </div>
-            <span className="text-gray-500 mx-3 text-sm font-bold">+</span>
-            <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shadow-lg z-10 backdrop-blur-md">
+            <span className="text-gray-500 dark:text-gray-500 mx-3 text-sm font-bold">+</span>
+            <div className="w-12 h-12 rounded-full bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center shadow-lg z-10 backdrop-blur-md">
               <span className="text-[11px] text-gray-300 font-bold uppercase tracking-wider">
                 You
               </span>
             </div>
           </div>
-          <span className="text-white font-medium text-base md:text-lg tracking-tight pb-2 sm:pb-0">
+          <span className="text-gray-900 dark:text-white font-medium text-base md:text-lg tracking-tight pb-2 sm:pb-0">
             Run a free diagnostic
           </span>
         </div>
@@ -105,7 +107,7 @@ const Integrations = () => {
       {/* Bottom Box & Particles */}
       <div className="relative w-full max-w-3xl h-[250px] flex justify-center items-end mt-10">
         {/* Exploding Particles (z-10) */}
-        <div className="absolute bottom-[60px] left-1/2 z-10">
+        <div className="absolute bottom-[60px] left-1/2 z-10 scale-[0.6] sm:scale-[0.8] md:scale-100">
           {floatingTags.map((tag, i) => (
             <motion.div
               key={i}
@@ -124,7 +126,11 @@ const Integrations = () => {
                 damping: 12,
                 delay: tag.delay,
               }}
-              className="absolute bg-[#1c1c1e] border border-white/10 px-5 py-2.5 rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] text-sm font-medium text-gray-200 whitespace-nowrap backdrop-blur-md"
+              drag
+              dragConstraints={containerRef}
+              whileDrag={{ scale: 1.1, cursor: "grabbing", zIndex: 50 }}
+              whileHover={{ scale: 1.05 }}
+              className="absolute bg-gray-100 dark:bg-[#1c1c1e] border border-gray-200 dark:border-white/10 px-5 py-2.5 rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.1)] text-sm font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap backdrop-blur-md cursor-grab"
               style={{
                 marginLeft: "-50%",
                 marginTop: "-50%",
