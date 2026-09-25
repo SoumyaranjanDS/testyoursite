@@ -13,16 +13,21 @@ import Signup from "./pages/Signup";
 import Roadmap from "./pages/Roadmap";
 import Docs from "./pages/Docs";
 
+import Dashboard from "./pages/Dashboard";
+
 const Layout = ({ children }) => {
   const location = useLocation();
-  const isAuthPage =
-    location.pathname === "/login" || location.pathname === "/signup";
+  const isNoLayoutPage =
+    location.pathname === "/login" ||
+    location.pathname === "/signup" ||
+    location.pathname.startsWith("/dashboard");
+  const isNoFooterPage = location.pathname.startsWith("/docs");
 
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 font-sans selection:bg-blue-500/30 flex flex-col">
-      {!isAuthPage && <Navbar />}
+      {!isNoLayoutPage && <Navbar />}
       <div className="flex-1">{children}</div>
-      {!isAuthPage && <Footer />}
+      {!isNoLayoutPage && !isNoFooterPage && <Footer />}
     </div>
   );
 };
@@ -37,6 +42,7 @@ function App() {
           <Route path="/docs" element={<Docs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Layout>
     </Router>
