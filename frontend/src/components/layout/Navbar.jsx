@@ -79,7 +79,7 @@ const Navbar = () => {
         {/* Left: Logo */}
         <Link to="/" className="flex items-center gap-2 mr-4 sm:mr-8 group">
           <Logo className="w-6 h-6 text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors" />
-          <span className="text-lg font-bold text-gray-900 dark:text-white tracking-wide hidden sm:block font-heading">
+          <span className="text-lg font-bold text-gray-900 dark:text-white hidden sm:block font-heading">
             TestYourSite
           </span>
         </Link>
