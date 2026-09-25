@@ -46,7 +46,7 @@ const SimulationLine = ({ d, density = 3, speed = 0.8, baseDelay = 0 }) => {
 const SimulationNode = ({ x, y, icon: Icon, label, subtitle }) => {
   return (
     <foreignObject x={x - 90} y={y - 25} width="180" height="50" className="overflow-visible">
-      <div className="w-full h-full flex items-center gap-3 bg-[#1c1c1e] border border-white/10 rounded-[1.25rem] px-3 py-2 shadow-lg">
+      <div className="w-full h-full flex items-center gap-3 bg-gray-100 dark:bg-[#1c1c1e] border border-gray-200 dark:border-white/10 rounded-[1.25rem] px-3 py-2 shadow-lg">
         <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0 border border-blue-500/20">
           <Icon className="w-4 h-4 text-blue-400" />
         </div>
@@ -55,7 +55,7 @@ const SimulationNode = ({ x, y, icon: Icon, label, subtitle }) => {
             {label}
           </span>
           {subtitle && (
-            <span className="text-[10px] text-gray-500 whitespace-nowrap leading-tight">
+            <span className="text-[10px] text-gray-500 dark:text-gray-500 whitespace-nowrap leading-tight">
               {subtitle}
             </span>
           )}
