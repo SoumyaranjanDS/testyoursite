@@ -182,9 +182,9 @@ const TourMode = () => {
       <foreignObject x={cx - 125} y={cy - 60} width="250" height="120" className="overflow-visible">
         <div className="w-full h-full relative flex items-center justify-center">
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex items-center gap-3 px-3 py-2 w-[176px] h-[56px] rounded-xl border bg-[#121214]/80 border-white/5 text-[var(--muted)]">
+            <div className="flex items-center gap-3 px-3 py-2 w-[176px] h-[56px] rounded-xl border bg-gray-50 dark:bg-[#121214]/80 border-gray-200 dark:border-white/5 text-[var(--muted)]">
               <div className="p-2 rounded-lg bg-white/5">
-                <Icon className="w-4 h-4 text-gray-500" />
+                <Icon className="w-4 h-4 text-gray-500 dark:text-gray-500" />
               </div>
               <span className="text-xs font-bold tracking-wide uppercase">{label}</span>
             </div>
@@ -208,7 +208,7 @@ const TourMode = () => {
                   style={{ boxShadow: `0 0 25px ${t.glow}` }}
                 >
                   <div className={`p-2 rounded-lg ${t.solid}`}>
-                    <Icon className="w-4 h-4 text-white" />
+                    <Icon className="w-4 h-4 text-gray-900 dark:text-white" />
                   </div>
                   <span className="text-xs font-bold tracking-wide uppercase">{label}</span>
                 </div>
@@ -233,8 +233,8 @@ const TourMode = () => {
               onClick={() => setActiveTab(phase.id)}
               className={`px-6 py-2.5 rounded-full font-medium text-sm transition-all duration-300 flex items-center gap-2
                 ${isActive
-                  ? 'bg-[#1c1c1e] text-white border border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.5)]'
-                  : 'bg-transparent text-[var(--muted)] hover:bg-[#1c1c1e]/50 hover:text-white border border-transparent'
+                  ? 'bg-gray-100 dark:bg-[#1c1c1e] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.5)]'
+                  : 'bg-transparent text-[var(--muted)] hover:bg-gray-100 dark:bg-[#1c1c1e]/50 hover:text-gray-900 dark:text-white border border-transparent'
                 }
               `}
             >
@@ -254,13 +254,13 @@ const TourMode = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 30 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="bg-[#121214]/80 backdrop-blur-xl border border-white/5 p-10 rounded-[2rem] shadow-2xl"
+              className="bg-gray-50 dark:bg-[#121214]/80 backdrop-blur-xl border border-gray-200 dark:border-white/5 p-10 rounded-[2rem] shadow-2xl"
             >
               <div className="inline-flex items-center justify-center px-4 py-1.5 bg-accent/10 border border-accent/20 text-accent text-xs font-mono rounded-full mb-8 tracking-widest uppercase shadow-[0_0_15px_rgba(99,102,241,0.2)]">
                 Phase 0{activeTab + 1}
               </div>
               
-              <h3 className="text-3xl md:text-4xl font-bold text-milky mb-6">
+              <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-milky mb-6">
                 {phases[activeTab].title}
               </h3>
               <p className="text-lg text-[var(--muted)] mb-10 leading-relaxed">
@@ -277,7 +277,7 @@ const TourMode = () => {
                     className="flex gap-4 items-start"
                   >
                     <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5 drop-shadow-[0_0_10px_rgba(16,185,129,0.3)]" />
-                    <span className="text-milky/90 leading-relaxed text-base">{detail}</span>
+                    <span className="text-gray-900 dark:text-milky/90 leading-relaxed text-base">{detail}</span>
                   </motion.div>
                 ))}
               </div>
@@ -378,7 +378,7 @@ const SimulationNode = ({ icon: Icon, label, cx, cy, theme, pulseSpeed = 0.8, si
     <foreignObject x={cx - 125} y={cy - 60} width="250" height="120" className="overflow-visible">
       <div className="w-full h-full relative flex items-center justify-center">
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex items-center gap-3 px-3 py-2 w-[176px] h-[56px] rounded-xl border bg-[#121214]/80 border-white/5 shadow-[0_4px_12px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)] text-[var(--muted)] transition-opacity duration-300">
+          <div className="flex items-center gap-3 px-3 py-2 w-[176px] h-[56px] rounded-xl border bg-gray-50 dark:bg-[#121214]/80 border-gray-200 dark:border-white/5 shadow-[0_4px_12px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)] text-[var(--muted)] transition-opacity duration-300">
             <div className="p-2 rounded-lg bg-white/5">
               <Icon className="w-4 h-4" style={{ color: t.hex }} />
             </div>
@@ -397,7 +397,7 @@ const SimulationNode = ({ icon: Icon, label, cx, cy, theme, pulseSpeed = 0.8, si
             style={{ boxShadow: `0 0 25px ${t.glow}, 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15)` }}
           >
             <div className={`p-2 rounded-lg ${t.solid}`}>
-              <Icon className="w-4 h-4 text-white" />
+              <Icon className="w-4 h-4 text-gray-900 dark:text-white" />
             </div>
             <span className="text-xs font-bold tracking-wide uppercase">{label}</span>
           </div>
@@ -408,12 +408,12 @@ const SimulationNode = ({ icon: Icon, label, cx, cy, theme, pulseSpeed = 0.8, si
 };
 
 const MetricBox = ({ label, value, icon: Icon, color }) => (
-  <div className="bg-[#121214] border border-white/5 rounded-lg p-3 shadow-[0_4px_12px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]">
+  <div className="bg-gray-50 dark:bg-[#121214] border border-gray-200 dark:border-white/5 rounded-lg p-3 shadow-[0_4px_12px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]">
     <div className="flex items-center gap-2 mb-1">
       <Icon className={`w-3 h-3 ${color}`} />
-      <span className="text-xs text-gray-400">{label}</span>
+      <span className="text-xs text-gray-600 dark:text-gray-400">{label}</span>
     </div>
-    <div className="text-xl font-bold text-white font-mono ">{value}</div>
+    <div className="text-xl font-bold text-gray-900 dark:text-white font-mono ">{value}</div>
   </div>
 );
 
@@ -485,7 +485,7 @@ const SandboxMode = () => {
   return (
     <div className="flex flex-col lg:flex-row gap-16 items-center">
       <div className="w-full lg:w-[45%] relative z-10">
-        <div className="bg-[#121214]/80 backdrop-blur-xl border border-white/5 p-8 rounded-[2rem] shadow-[0_16px_48px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden">
+        <div className="bg-gray-50 dark:bg-[#121214]/80 backdrop-blur-xl border border-gray-200 dark:border-white/5 p-8 rounded-[2rem] shadow-[0_16px_48px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)] relative overflow-hidden">
           
           {simState === "running" && (
             <motion.div 
@@ -497,33 +497,33 @@ const SandboxMode = () => {
           )}
 
           <div className="mb-8">
-            <h3 className="text-xl font-bold text-white ">Setup Scenario</h3>
-            <p className="text-sm text-gray-500 mt-1">Configure and trigger a live diagnostic test</p>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white ">Setup Scenario</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">Configure and trigger a live diagnostic test</p>
           </div>
           
           <div className="space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                <Globe className="w-4 h-4 text-gray-500" /> Target Endpoint
+                <Globe className="w-4 h-4 text-gray-500 dark:text-gray-500" /> Target Endpoint
               </label>
-              <input type="text" className="w-full bg-[#09090b] border border-white/10 rounded-xl p-3.5 text-white text-sm focus:outline-none focus:border-accent/50 transition-colors" defaultValue="https://api.example.com/graphql" disabled={simState !== "idle"} />
+              <input type="text" className="w-full bg-white dark:bg-[#09090b] border border-gray-200 dark:border-white/10 rounded-xl p-3.5 text-gray-900 dark:text-white text-sm focus:outline-none focus:border-accent/50 transition-colors" defaultValue="https://api.example.com/graphql" disabled={simState !== "idle"} />
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-300">Requests per Sec</label>
-                <input type="number" value={rps} onChange={(e) => setRps(Number(e.target.value))} className="w-full bg-[#09090b] border border-white/10 rounded-xl p-3.5 text-white text-sm focus:outline-none focus:border-accent/50 transition-colors" disabled={simState !== "idle"} />
+                <input type="number" value={rps} onChange={(e) => setRps(Number(e.target.value))} className="w-full bg-white dark:bg-[#09090b] border border-gray-200 dark:border-white/10 rounded-xl p-3.5 text-gray-900 dark:text-white text-sm focus:outline-none focus:border-accent/50 transition-colors" disabled={simState !== "idle"} />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-300">Duration (sec)</label>
-                <input type="number" value={duration} onChange={(e) => setDuration(Number(e.target.value))} className="w-full bg-[#09090b] border border-white/10 rounded-xl p-3.5 text-white text-sm focus:outline-none focus:border-accent/50 transition-colors" disabled={simState !== "idle"} />
+                <input type="number" value={duration} onChange={(e) => setDuration(Number(e.target.value))} className="w-full bg-white dark:bg-[#09090b] border border-gray-200 dark:border-white/10 rounded-xl p-3.5 text-gray-900 dark:text-white text-sm focus:outline-none focus:border-accent/50 transition-colors" disabled={simState !== "idle"} />
               </div>
             </div>
 
             <button 
               onClick={() => simState === "report" ? setSimState("idle") : startSimulation()} 
               disabled={simState !== "idle" && simState !== "report"}
-              className="w-full bg-[#1c1c1e] hover:bg-[#2c2c2e] text-white border border-white/10 py-3.5 rounded-xl font-medium shadow-[0_4px_14px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-gray-100 dark:bg-[#1c1c1e] hover:bg-[#2c2c2e] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 py-3.5 rounded-xl font-medium shadow-[0_4px_14px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {simState === "idle" ? "Deploy Agents & Run Test" : simState === "starting" ? "Initializing..." : simState === "running" ? "Test in Progress..." : simState === "analyzing" ? "AI Analyzing Logs..." : "Run Another Test"}
             </button>
@@ -535,9 +535,9 @@ const SandboxMode = () => {
                 initial={{ opacity: 0, height: 0, marginTop: 0 }}
                 animate={{ opacity: 1, height: "auto", marginTop: 32 }}
                 exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                className="border-t border-white/10 pt-6 overflow-hidden"
+                className="border-t border-gray-200 dark:border-white/10 pt-6 overflow-hidden"
               >
-                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                <h4 className="text-xs font-bold text-gray-500 dark:text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
                   <Activity className="w-3 h-3" /> Live Telemetry
                 </h4>
                 <div className="grid grid-cols-2 gap-4">
@@ -556,9 +556,9 @@ const SandboxMode = () => {
                   >
                     <div>
                       <p className="text-emerald-400 font-bold text-sm mb-1">Root Cause Identified</p>
-                      <p className="text-xs text-gray-400">MongoDB rate limit exceeded. Buffer overflow.</p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400">MongoDB rate limit exceeded. Buffer overflow.</p>
                     </div>
-                    <button onClick={() => setSimState("idle")} className="text-xs px-4 py-2 bg-emerald-500 text-white rounded-lg font-bold hover:bg-emerald-600 transition-colors shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+                    <button onClick={() => setSimState("idle")} className="text-xs px-4 py-2 bg-emerald-500 text-gray-900 dark:text-white rounded-lg font-bold hover:bg-emerald-600 transition-colors shadow-[0_0_15px_rgba(16,185,129,0.4)]">
                       Reset
                     </button>
                   </motion.div>
@@ -660,12 +660,12 @@ const HowItWorks = () => {
   const [viewMode, setViewMode] = useState('tour'); 
 
   return (
-    <section id="how-it-works" className="py-24 bg-[#09090b] relative overflow-hidden">
+    <section id="how-it-works" className="py-24 bg-white dark:bg-[#09090b] relative overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_100%_100%_at_50%_50%,black_0%,transparent_100%)] pointer-events-none" />
 
       <div className="max-w-[1300px] mx-auto px-6 relative z-10">
         <div className="text-center mb-10">
-          <h2 className="text-4xl md:text-5xl font-medium text-milky mb-4 font-heading">
+          <h2 className="text-4xl md:text-5xl font-medium text-gray-900 dark:text-milky mb-4 font-heading">
             How it Works
           </h2>
           <p className="text-lg text-[var(--muted)]">
@@ -674,16 +674,16 @@ const HowItWorks = () => {
         </div>
 
         <div className="flex justify-center mb-12">
-          <div className="bg-[#121214] border border-white/10 rounded-full p-1.5 flex items-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+          <div className="bg-gray-50 dark:bg-[#121214] border border-gray-200 dark:border-white/10 rounded-full p-1.5 flex items-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
             <button 
               onClick={() => setViewMode('tour')}
-              className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${viewMode === 'tour' ? 'bg-white/10 text-white shadow-md' : 'text-gray-500 hover:text-white hover:bg-white/5'}`}
+              className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 ${viewMode === 'tour' ? 'bg-white/10 text-gray-900 dark:text-white shadow-md' : 'text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:text-white hover:bg-white/5'}`}
             >
               Step-by-Step Tour
             </button>
             <button 
               onClick={() => setViewMode('sandbox')}
-              className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${viewMode === 'sandbox' ? 'bg-accent/20 text-accent border border-accent/30 shadow-[0_0_15px_rgba(99,102,241,0.2)]' : 'text-gray-500 hover:text-white hover:bg-white/5'}`}
+              className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 ${viewMode === 'sandbox' ? 'bg-accent/20 text-accent border border-accent/30 shadow-[0_0_15px_rgba(99,102,241,0.2)]' : 'text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:text-white hover:bg-white/5'}`}
             >
               <Activity className="w-4 h-4" /> Live Sandbox
             </button>
