@@ -44,7 +44,7 @@ const Login = () => {
         <div className="relative z-10 max-w-md">
           <div className="flex items-center gap-2 mb-8">
              <Logo className="w-10 h-10 text-white" />
-             <span className="text-2xl font-bold text-gray-900 dark:text-white tracking-wide font-heading">
+             <span className="text-2xl font-bold text-gray-900 dark:text-white font-heading">
                 TestYourSite
              </span>
           </div>
