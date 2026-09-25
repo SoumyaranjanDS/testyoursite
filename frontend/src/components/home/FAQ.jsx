@@ -25,10 +25,10 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#09090b] border-t border-white/5 relative z-10">
+    <section className="py-24 bg-white dark:bg-[#09090b] border-t border-gray-200 dark:border-white/5 relative z-10">
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-medium font-heading text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-medium font-heading text-gray-900 dark:text-white mb-4">
             Frequently asked questions
           </h2>
         </div>
@@ -42,21 +42,21 @@ const FAQ = () => {
                 key={idx} 
                 className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                   isOpen 
-                    ? 'bg-[#1c1c1e] border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]' 
-                    : 'bg-[#121214] border-white/5 hover:bg-[#151518]'
+                    ? 'bg-gray-100 dark:bg-[#1c1c1e] border-gray-200 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]' 
+                    : 'bg-gray-50 dark:bg-[#121214] border-gray-200 dark:border-white/5 hover:bg-[#151518]'
                 }`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
                   className="w-full flex items-center justify-between p-6 text-left focus:outline-none cursor-pointer"
                 >
-                  <span className={`text-base md:text-lg font-medium transition-colors ${isOpen ? 'text-white' : 'text-gray-300'}`}>
+                  <span className={`text-base md:text-lg font-medium transition-colors ${isOpen ? 'text-gray-900 dark:text-white' : 'text-gray-300'}`}>
                     {faq.q}
                   </span>
                   <div className={`w-8 h-8 rounded-full border flex items-center justify-center shrink-0 transition-all duration-300 ${
                     isOpen 
                       ? 'bg-blue-500/10 border-blue-500/30 text-blue-400' 
-                      : 'bg-white/5 border-white/10 text-gray-500'
+                      : 'bg-white/5 border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-500'
                   }`}>
                     <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`} />
                   </div>
@@ -70,7 +70,7 @@ const FAQ = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="p-6 pt-0 text-gray-400 text-sm md:text-base leading-relaxed">
+                      <div className="p-6 pt-0 text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed">
                         {faq.a}
                       </div>
                     </motion.div>
