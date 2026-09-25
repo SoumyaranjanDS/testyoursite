@@ -45,7 +45,7 @@ const Testimonials = () => {
                     {review.name.charAt(0)}
                   </div>
                   <div className="z-10 truncate">
-                    <div className="font-bold text-gray-900 dark:text-white text-base tracking-tight truncate">
+                    <div className="font-bold text-gray-900 dark:text-white text-base truncate">
                       {review.name}
                     </div>
                     <div className="text-xs text-blue-300 font-medium truncate mt-0.5">
