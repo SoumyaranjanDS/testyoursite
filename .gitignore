@@ -3,3 +3,4 @@ ecosystem_roadmap.md
 .env
 load-test.js
 local-load-test.js
+target-auth-app/
