@@ -10,7 +10,8 @@ import {
   Cloud,
   ShieldX,
   ShieldCheck,
-  Server
+  Server,
+  AlertTriangle,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Editor from "@monaco-editor/react";
@@ -162,7 +163,7 @@ const Docs = () => {
 
             {activeSection === "architecture" && (
               <div className="prose prose-slate dark:prose-invert max-w-none space-y-8">
-                <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-emerald-400 mb-2">
+                <h1 className="text-4xl font-bold font-['Space_Grotesk'] text-transparent bg-clip-text mb-2">
                   Engineering Journal: The Distributed Swarm
                 </h1>
 
@@ -174,7 +175,7 @@ const Docs = () => {
                 <hr className="border-gray-200 dark:border-gray-800" />
 
                 <div className="space-y-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white border-l-4 border-indigo-500 pl-4 py-1">
+                  <h2 className="text-2xl font-bold font-['Outfit'] text-gray-900 dark:text-white border-l-4 border-indigo-500 pl-4 py-1">
                     The Firewall Blockade
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -190,15 +191,18 @@ const Docs = () => {
 
                   {/* The Problem Diagram */}
                   <div className="my-8 text-sm border border-gray-200 dark:border-white/10 rounded-2xl p-8 bg-white dark:bg-[#111113] flex flex-col md:flex-row items-center justify-between text-gray-500 dark:text-gray-400 shadow-xl gap-6 md:gap-0">
-                    
                     <div className="flex flex-col items-center">
                       <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-gray-50 dark:bg-gray-800/50 ring-1 ring-gray-200 dark:ring-white/10 shadow-sm">
                         <Laptop className="w-8 h-8 text-gray-700 dark:text-gray-300" />
                       </div>
-                      <span className="mt-3 text-xs font-semibold text-gray-900 dark:text-gray-200">Your Machine</span>
-                      <span className="text-[10px] text-gray-500">1 IP Address</span>
+                      <span className="mt-3 text-xs font-semibold text-gray-900 dark:text-gray-200">
+                        Your Machine
+                      </span>
+                      <span className="text-[10px] text-gray-500">
+                        1 IP Address
+                      </span>
                     </div>
-                    
+
                     <div className="flex-1 flex flex-col items-center justify-center px-4 w-full md:w-auto relative min-h-[40px] md:min-h-0">
                       <div className="flex flex-col md:flex-row items-center w-full h-full md:h-auto">
                         <div className="w-px h-full md:h-px bg-gray-300 dark:bg-gray-700 flex-1"></div>
@@ -208,28 +212,36 @@ const Docs = () => {
                         200 Req/s
                       </div>
                     </div>
-                    
+
                     <div className="flex flex-col items-center z-10">
                       <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-red-50 dark:bg-red-500/10 shadow-[0_0_20px_rgba(239,68,68,0.15)] ring-1 ring-red-500/30">
                         <ShieldX className="w-8 h-8 text-red-500" />
                       </div>
-                      <span className="mt-3 text-xs text-red-500 font-bold tracking-wider">WAF</span>
-                      <span className="text-[10px] text-red-500/70 font-semibold">429 Blocked</span>
+                      <span className="mt-3 text-xs text-red-500 font-bold tracking-wider">
+                        WAF
+                      </span>
+                      <span className="text-[10px] text-red-500/70 font-semibold">
+                        429 Blocked
+                      </span>
                     </div>
-                    
+
                     <div className="flex-1 flex flex-col items-center justify-center px-4 w-full md:w-auto relative min-h-[40px] md:min-h-0 opacity-40">
                       <div className="flex flex-col md:flex-row items-center w-full h-full md:h-auto">
                         <div className="w-px h-full md:h-px bg-red-500/50 border-dashed border-l md:border-t md:border-l-0 border-red-500/50 flex-1"></div>
                         <div className="hidden md:block w-0 h-0 border-t-[4px] border-t-transparent border-l-[6px] border-l-red-500/50 border-b-[4px] border-b-transparent"></div>
                       </div>
                     </div>
-                    
+
                     <div className="flex flex-col items-center opacity-40">
                       <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-gray-50 dark:bg-gray-800/50 ring-1 ring-gray-200 dark:ring-white/10 shadow-sm">
                         <Server className="w-8 h-8 text-gray-700 dark:text-gray-300" />
                       </div>
-                      <span className="mt-3 text-xs font-semibold text-gray-900 dark:text-gray-200">Production API</span>
-                      <span className="text-[10px] text-gray-500">0 Reached</span>
+                      <span className="mt-3 text-xs font-semibold text-gray-900 dark:text-gray-200">
+                        Production API
+                      </span>
+                      <span className="text-[10px] text-gray-500">
+                        0 Reached
+                      </span>
                     </div>
                   </div>
 
@@ -369,10 +381,20 @@ const Docs = () => {
                     />
                   </div>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-4">
-                    In the code above, notice the crucial timer logic: <code>performance.now()</code>. The lambda explicitly captures the moment right before it makes the outgoing <code>fetch</code> request and right after it completes. We wrap the fetch in a <code>try-catch</code> so even if the request times out or the target crashes, we accurately capture the duration until failure. 
+                    In the code above, notice the crucial timer logic:{" "}
+                    <code>performance.now()</code>. The lambda explicitly
+                    captures the moment right before it makes the outgoing{" "}
+                    <code>fetch</code> request and right after it completes. We
+                    wrap the fetch in a <code>try-catch</code> so even if the
+                    request times out or the target crashes, we accurately
+                    capture the duration until failure.
                   </p>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-4">
-                    Because we only measure the time it takes for the <em>fetch itself</em> to execute, any delays from AWS booting up the micro-container (Cold Starts) are completely ignored. The Lambda might take 3 seconds to boot, but it will correctly report that the HTTP request only took 150ms.
+                    Because we only measure the time it takes for the{" "}
+                    <em>fetch itself</em> to execute, any delays from AWS
+                    booting up the micro-container (Cold Starts) are completely
+                    ignored. The Lambda might take 3 seconds to boot, but it
+                    will correctly report that the HTTP request only took 150ms.
                   </p>
                 </div>
 
@@ -381,10 +403,11 @@ const Docs = () => {
                     Orchestrating with k6
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                    Finally, we updated our Node.js backend orchestrator. Instead of
-                    configuring <code>k6</code> to attack the target directly,
-                    we configured <code>k6</code> to attack the AWS Lambda URL,
-                    passing the target's instructions in the payload.
+                    Finally, we updated our Node.js backend orchestrator.
+                    Instead of configuring <code>k6</code> to attack the target
+                    directly, we configured <code>k6</code> to attack the AWS
+                    Lambda URL, passing the target's instructions in the
+                    payload.
                   </p>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                     By using a custom k6 <code>Trend</code> metric (
@@ -397,15 +420,16 @@ const Docs = () => {
 
                   {/* The Solution Diagram */}
                   <div className="my-8 text-sm border border-gray-200 dark:border-white/10 rounded-2xl p-6 lg:p-8 bg-white dark:bg-[#111113] flex flex-col lg:flex-row items-center justify-between text-gray-500 dark:text-gray-400 shadow-xl gap-4 lg:gap-0">
-                    
                     {/* Step 1: k6 */}
                     <div className="flex flex-col items-center w-full lg:w-auto">
                       <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center bg-gray-50 dark:bg-gray-800/50 ring-1 ring-gray-200 dark:ring-white/10 shadow-sm">
                         <Terminal className="w-6 h-6 lg:w-8 lg:h-8 text-gray-700 dark:text-gray-300" />
                       </div>
-                      <span className="mt-3 text-xs font-semibold text-gray-900 dark:text-gray-200">k6 Commander</span>
+                      <span className="mt-3 text-xs font-semibold text-gray-900 dark:text-gray-200">
+                        k6 Commander
+                      </span>
                     </div>
-                    
+
                     <div className="flex-1 flex flex-col items-center justify-center px-2 w-full lg:w-auto relative min-h-[40px] lg:min-h-0">
                       <div className="flex flex-col lg:flex-row items-center w-full h-full lg:h-auto">
                         <div className="w-px h-full lg:h-px bg-gray-300 dark:bg-gray-700 flex-1"></div>
@@ -415,14 +439,18 @@ const Docs = () => {
                         Distributes Tasks
                       </div>
                     </div>
-                    
+
                     {/* Step 2: Backend */}
                     <div className="flex flex-col items-center w-full lg:w-auto z-10">
                       <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center bg-blue-50 dark:bg-blue-500/10 shadow-[0_0_20px_rgba(59,130,246,0.15)] ring-1 ring-blue-500/30">
                         <Activity className="w-6 h-6 lg:w-8 lg:h-8 text-blue-500" />
                       </div>
-                      <span className="mt-3 text-xs text-blue-500 font-bold tracking-wider">Node Backend</span>
-                      <span className="text-[10px] text-blue-500/70 font-semibold">Orchestrator</span>
+                      <span className="mt-3 text-xs text-blue-500 font-bold tracking-wider">
+                        Node Backend
+                      </span>
+                      <span className="text-[10px] text-blue-500/70 font-semibold">
+                        Orchestrator
+                      </span>
                     </div>
 
                     <div className="flex-1 flex items-center justify-center px-2 w-full lg:w-auto relative min-h-[40px] lg:min-h-0">
@@ -437,8 +465,12 @@ const Docs = () => {
                       <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center bg-indigo-50 dark:bg-indigo-500/10 shadow-[0_0_20px_rgba(99,102,241,0.15)] ring-1 ring-indigo-500/30">
                         <Cloud className="w-6 h-6 lg:w-8 lg:h-8 text-indigo-500" />
                       </div>
-                      <span className="mt-3 text-xs text-indigo-500 font-bold tracking-wider">AWS Swarm</span>
-                      <span className="text-[10px] text-indigo-500/70 font-semibold">200 Unique IPs</span>
+                      <span className="mt-3 text-xs text-indigo-500 font-bold tracking-wider">
+                        AWS Swarm
+                      </span>
+                      <span className="text-[10px] text-indigo-500/70 font-semibold">
+                        200 Unique IPs
+                      </span>
                     </div>
 
                     <div className="flex-1 flex items-center justify-center px-2 w-full lg:w-auto relative min-h-[40px] lg:min-h-0 opacity-50">
@@ -453,8 +485,12 @@ const Docs = () => {
                       <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center bg-gray-50 dark:bg-gray-800/50 ring-1 ring-gray-200 dark:ring-white/10 shadow-sm relative">
                         <ShieldCheck className="w-6 h-6 lg:w-8 lg:h-8 text-gray-400" />
                       </div>
-                      <span className="mt-3 text-xs font-bold text-gray-500 tracking-wider">WAF</span>
-                      <span className="text-[10px] text-green-500 font-semibold">Bypassed!</span>
+                      <span className="mt-3 text-xs font-bold text-gray-500 tracking-wider">
+                        WAF
+                      </span>
+                      <span className="text-[10px] text-green-500 font-semibold">
+                        Bypassed!
+                      </span>
                     </div>
 
                     <div className="flex-1 flex items-center justify-center px-2 w-full lg:w-auto relative min-h-[40px] lg:min-h-0">
@@ -469,8 +505,12 @@ const Docs = () => {
                       <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl flex items-center justify-center bg-emerald-50 dark:bg-emerald-500/10 shadow-[0_0_20px_rgba(16,185,129,0.15)] ring-1 ring-emerald-500/30">
                         <Server className="w-6 h-6 lg:w-8 lg:h-8 text-emerald-500" />
                       </div>
-                      <span className="mt-3 text-xs text-emerald-600 dark:text-emerald-400 font-bold tracking-wider">Target API</span>
-                      <span className="text-[10px] text-emerald-600/70 font-semibold">200 Reached</span>
+                      <span className="mt-3 text-xs text-emerald-600 dark:text-emerald-400 font-bold tracking-wider">
+                        Target API
+                      </span>
+                      <span className="text-[10px] text-emerald-600/70 font-semibold">
+                        200 Reached
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -480,9 +520,12 @@ const Docs = () => {
                     Proving It: Local Validation
                   </h2>
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                    To prove why this distributed architecture is necessary, we configured our own local backend with an <code>express-rate-limit</code> middleware, restricting traffic to just 10 requests per minute per IP:
+                    To prove why this distributed architecture is necessary, we
+                    configured our own local backend with an{" "}
+                    <code>express-rate-limit</code> middleware, restricting
+                    traffic to just 10 requests per minute per IP:
                   </p>
-                  
+
                   <div className="rounded-xl overflow-hidden shadow-xl border border-white/10 my-6">
                     <Editor
                       height="230px"
@@ -508,39 +551,47 @@ app.use(limiter);`}
                         scrollbar: { vertical: "hidden", horizontal: "hidden" },
                         fontSize: 14,
                         padding: { top: 20, bottom: 20 },
-                        wordWrap: "on"
+                        wordWrap: "on",
                       }}
                     />
                   </div>
 
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-4">
-                    We then ran a local load-testing script targeting this endpoint with 50 concurrent virtual users for 10 seconds. The results were immediate and devastating to the load test:
+                    We then ran a local load-testing script targeting this
+                    endpoint with 50 concurrent virtual users for 10 seconds.
+                    The results were immediate and devastating to the load test:
                   </p>
 
                   <div className="bg-gray-900 dark:bg-[#000000] rounded-xl p-4 border border-gray-800 dark:border-white/5 shadow-inner mt-4 overflow-x-auto">
                     <pre className="text-gray-300 text-sm font-mono whitespace-pre-wrap">
-<span className="text-emerald-400">✅ Local Test Complete!</span>
------------------------------------
-📊 Total Requests: <span className="text-white">33611</span>
-✅ Success: <span className="text-emerald-400">10</span>
-❌ Failed: <span className="text-red-400">33601</span>
-
-📡 Status Codes Breakdown:
-  - Status 200: <span className="text-emerald-400">10 responses</span>
-  - Status 429: <span className="text-red-400">33601 responses</span>
+                      <span className="text-emerald-400">
+                        ✅ Local Test Complete!
+                      </span>
+                      ----------------------------------- 📊 Total Requests:{" "}
+                      <span className="text-white">33611</span>✅ Success:{" "}
+                      <span className="text-emerald-400">10</span>❌ Failed:{" "}
+                      <span className="text-red-400">33601</span>
+                      📡 Status Codes Breakdown: - Status 200:{" "}
+                      <span className="text-emerald-400">10 responses</span>-
+                      Status 429:{" "}
+                      <span className="text-red-400">33601 responses</span>
                     </pre>
                   </div>
 
                   <p className="text-gray-600 dark:text-gray-400 leading-relaxed mt-4">
-                    Exactly 10 requests succeeded. The remaining 33,601 requests were instantly blocked, returning <code>429 Too Many Requests</code>. Meanwhile, our backend terminal flooded with rate-limit warnings from <code>::1</code> (the IPv6 loopback address for localhost):
+                    Exactly 10 requests succeeded. The remaining 33,601 requests
+                    were instantly blocked, returning{" "}
+                    <code>429 Too Many Requests</code>. Meanwhile, our backend
+                    terminal flooded with rate-limit warnings from{" "}
+                    <code>::1</code> (the IPv6 loopback address for localhost):
                   </p>
 
                   <div className="bg-gray-900 dark:bg-[#000000] rounded-xl p-4 border border-gray-800 dark:border-white/5 shadow-inner mt-4">
                     <pre className="text-yellow-400/90 text-sm font-mono whitespace-pre-wrap opacity-80">
-[RATE LIMIT] IP ::1 exceeded the rate limit! Blocking request.
-[RATE LIMIT] IP ::1 exceeded the rate limit! Blocking request.
-[RATE LIMIT] IP ::1 exceeded the rate limit! Blocking request.
-... (33,598 more lines)
+                      [RATE LIMIT] IP ::1 exceeded the rate limit! Blocking
+                      request. [RATE LIMIT] IP ::1 exceeded the rate limit!
+                      Blocking request. [RATE LIMIT] IP ::1 exceeded the rate
+                      limit! Blocking request. ... (33,598 more lines)
                     </pre>
                   </div>
 
@@ -552,7 +603,27 @@ app.use(limiter);`}
                       </h4>
                     </div>
                     <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                      Testing locally proves the limitation of traditional load testing from a single machine. By distributing the load across hundreds of temporary AWS containers, each request originates from a completely distinct IP address, effortlessly keeping the traffic per-IP well below the <code>max: 10</code> threshold.
+                      Testing locally proves the limitation of traditional load
+                      testing from a single machine. By distributing the load
+                      across hundreds of temporary AWS containers, each request
+                      originates from a completely distinct IP address,
+                      effortlessly keeping the traffic per-IP well below the{" "}
+                      <code>max: 10</code> threshold.
+                    </p>
+                  </div>
+
+                  <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30 rounded-2xl p-6 mt-4">
+                    <div className="flex items-center gap-3 mb-2">
+                      <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-500" />
+                      <h4 className="font-bold text-gray-900 dark:text-white">
+                        Note on Concurrency vs. Total Requests
+                      </h4>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-3">
+                      Even with the AWS Swarm, you can still hit a WAF rate limiter if you don't use enough concurrency. AWS Lambda provisions unique IPs based on <strong>Concurrency</strong>, not total requests. 
+                    </p>
+                    <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
+                      If you run a load test with 50 Virtual Users (VUs) that generates 14,000 requests, AWS only spins up 50 IP addresses. Each of those 50 IPs will rapidly make hundreds of requests, triggering rate limits on Enterprise Firewalls. To simulate a true global attack and completely evade Datacenter IP blocking, the orchestrator must command massive concurrency (e.g., 5,000+ VUs) spread across multiple global AWS regions!
                     </p>
                   </div>
                 </div>

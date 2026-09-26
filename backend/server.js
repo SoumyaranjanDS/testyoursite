@@ -40,7 +40,7 @@ app.use(express.json());
 // Rate limiting middleware
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 10, // limit each IP to 1000 requests per windowMs
+  max: 300, // limit each IP to 1000 requests per windowMs
   message: { message: "Too many requests, please try again later." },
   handler: (req, res, next, options) => {
     console.log(
