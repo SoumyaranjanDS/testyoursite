@@ -14,6 +14,10 @@ import Roadmap from "./pages/Roadmap";
 import Docs from "./pages/Docs";
 
 import Dashboard from "./pages/Dashboard";
+import Overview from "./pages/dashboard/Overview";
+import LoadGenerator from "./pages/dashboard/LoadGenerator";
+import History from "./pages/dashboard/History";
+import TestDetailsView from "./pages/dashboard/TestDetailsView";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -42,7 +46,13 @@ function App() {
           <Route path="/docs/*" element={<Docs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route index element={<Overview />} />
+            <Route path="load-generator" element={<LoadGenerator />} />
+            <Route path="history" element={<History />} />
+            <Route path="history/:testId" element={<TestDetailsView />} />
+            <Route path="settings" element={<div className="text-gray-400">Settings coming soon...</div>} />
+          </Route>
         </Routes>
       </Layout>
     </Router>
