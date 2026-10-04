@@ -10,11 +10,13 @@ import {
   Zap,
   Server,
   BarChart3,
-  Timer
+  Timer,
+  Play
 } from "lucide-react";
 import api from "../../api";
+import SignatureBox from "../common/SignatureBox";
 
-const TestDetails = ({ testId, onBack }) => {
+const TestDetails = ({ testId, onBack, onRerun }) => {
   const [test, setTest] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -26,13 +28,13 @@ const TestDetails = ({ testId, onBack }) => {
         const elapsed = Math.floor((Date.now() - new Date(test.createdAt).getTime()) / 1000);
         return Math.max(0, test.duration - elapsed);
       };
-      
+
       setTimeLeft(calcTimeLeft());
-      
+
       const timer = setInterval(() => {
         setTimeLeft(calcTimeLeft());
       }, 1000);
-      
+
       return () => clearInterval(timer);
     }
   }, [test]);
@@ -100,25 +102,56 @@ const TestDetails = ({ testId, onBack }) => {
     >
       {/* Navigation & Status Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <button 
+        <button
           onClick={onBack}
           className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium w-fit"
         >
           <ArrowLeft className="w-4 h-4" /> Back to Dashboard
         </button>
-        <div className={`px-4 py-1.5 text-xs font-bold rounded-full uppercase tracking-widest flex items-center gap-2 w-fit ${
-          isRunning ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 shadow-[0_0_15px_rgba(99,102,241,0.2)]' :
-          isCompleted ? 'bg-green-500/10 text-green-400 border border-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.1)]' :
-          'bg-red-500/10 text-red-400 border border-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.2)]'
-        }`}>
-          {isRunning ? (
-            <div className="w-3 h-3 rounded-full border-2 border-indigo-400 border-t-transparent animate-spin" />
-          ) : isCompleted ? (
-            <CheckCircle className="w-3.5 h-3.5" />
-          ) : (
-            <XCircle className="w-3.5 h-3.5" />
+        <div className="flex items-center gap-4">
+          <div className="relative px-4 py-1.5 text-xs font-bold rounded-xl uppercase tracking-widest flex items-center gap-2 w-fit">
+            <div className={`absolute inset-0 bg-[#09090b]/80 shadow-top rounded-xl z-0 border ${
+              isRunning ? 'border-indigo-500/30 shadow-[0_0_15px_rgba(99,102,241,0.15)]' :
+              isCompleted ? 'border-green-500/30 shadow-[0_0_15px_rgba(34,197,94,0.1)]' :
+              'border-red-500/30 shadow-[0_0_15px_rgba(239,68,68,0.15)]'
+            }`}></div>
+            <div className={`absolute inset-0 rounded-xl z-0 opacity-10 ${
+              isRunning ? 'bg-indigo-500' :
+              isCompleted ? 'bg-green-500' :
+              'bg-red-500'
+            }`}></div>
+            
+            <div className={`relative z-10 flex items-center gap-2 ${
+              isRunning ? 'text-indigo-400' :
+              isCompleted ? 'text-green-400' :
+              'text-red-400'
+            }`}>
+              {isRunning ? (
+                <div className="w-3 h-3 rounded-full border-2 border-indigo-400 border-t-transparent animate-spin" />
+              ) : isCompleted ? (
+                <CheckCircle className="w-3.5 h-3.5" />
+              ) : (
+                <XCircle className="w-3.5 h-3.5" />
+              )}
+              {test.status}
+            </div>
+          </div>
+
+          {/* Re-run Button */}
+          {(!isRunning && onRerun) && (
+            <SignatureBox
+              as="button"
+              onClick={() => onRerun(test)}
+              rounded="rounded-xl"
+              containerClassName="px-5 py-2"
+              className="flex items-center gap-2 text-gray-300 group-hover:text-indigo-200 transition-colors"
+              backgroundEffect={
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-indigo-500/20 group-hover:via-purple-500/20 group-hover:to-blue-500/20 opacity-0 group-hover:opacity-100 transition-all duration-500 z-0"></div>
+              }
+            >
+              <Play className="w-3.5 h-3.5 fill-white/20 group-hover:fill-indigo-400 transition-colors" /> Re-run Test
+            </SignatureBox>
           )}
-          {test.status}
         </div>
       </div>
 
@@ -126,13 +159,12 @@ const TestDetails = ({ testId, onBack }) => {
       <div className="relative rounded-3xl p-8 overflow-hidden group">
         <div className="absolute inset-0 bg-[#09090b]/80 shadow-top border border-white/5 z-0 transition-colors group-hover:bg-[#09090b]"></div>
         {/* Subtle background glow based on method */}
-        <div className={`absolute top-0 left-1/4 w-1/2 h-full opacity-10 blur-3xl z-0 ${
-          test.method === 'POST' ? 'bg-green-500' :
-          test.method === 'PUT' ? 'bg-yellow-500' :
-          test.method === 'DELETE' ? 'bg-red-500' :
-          test.method === 'PATCH' ? 'bg-purple-500' :
-          'bg-blue-500'
-        }`}></div>
+        <div className={`absolute top-0 left-1/4 w-1/2 h-full opacity-10 blur-3xl z-0 ${test.method === 'POST' ? 'bg-green-500' :
+            test.method === 'PUT' ? 'bg-yellow-500' :
+              test.method === 'DELETE' ? 'bg-red-500' :
+                test.method === 'PATCH' ? 'bg-purple-500' :
+                  'bg-blue-500'
+          }`}></div>
 
         <div className="relative z-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -141,13 +173,12 @@ const TestDetails = ({ testId, onBack }) => {
                 <Globe className="w-4 h-4" /> Target Endpoint
               </p>
               <div className="flex items-center gap-4 flex-wrap">
-                <span className={`px-3 py-1 rounded-lg text-sm font-bold tracking-wider ${
-                  test.method === 'POST' ? 'bg-green-500/10 text-green-400' :
-                  test.method === 'PUT' ? 'bg-yellow-500/10 text-yellow-400' :
-                  test.method === 'DELETE' ? 'bg-red-500/10 text-red-400' :
-                  test.method === 'PATCH' ? 'bg-purple-500/10 text-purple-400' :
-                  'bg-blue-500/10 text-blue-400'
-                }`}>
+                <span className={`px-3 py-1 rounded-lg text-sm font-bold tracking-wider ${test.method === 'POST' ? 'bg-green-500/10 text-green-400' :
+                    test.method === 'PUT' ? 'bg-yellow-500/10 text-yellow-400' :
+                      test.method === 'DELETE' ? 'bg-red-500/10 text-red-400' :
+                        test.method === 'PATCH' ? 'bg-purple-500/10 text-purple-400' :
+                          'bg-blue-500/10 text-blue-400'
+                  }`}>
                   {test.method || 'GET'}
                 </span>
                 <h1 className="text-2xl md:text-3xl font-medium text-white break-all">
@@ -279,7 +310,7 @@ const TestDetails = ({ testId, onBack }) => {
           <div className="relative rounded-3xl p-6">
             <div className="absolute inset-0 bg-[#09090b]/80 shadow-top border border-white/5 rounded-3xl"></div>
             <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-6 divide-x divide-white/5">
-              
+
               <div className="px-4 first:pl-0">
                 <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                   <Zap className="w-3.5 h-3.5 text-indigo-400" /> P95 Latency
@@ -299,8 +330,8 @@ const TestDetails = ({ testId, onBack }) => {
                   <Clock className="w-3.5 h-3.5 text-gray-400" /> Min / Max
                 </p>
                 <p className="text-lg font-semibold text-white">
-                  {httpDuration.min?.toFixed(0) || 0} <span className="text-xs text-gray-500">ms</span> 
-                  <span className="text-gray-600 mx-2">/</span> 
+                  {httpDuration.min?.toFixed(0) || 0} <span className="text-xs text-gray-500">ms</span>
+                  <span className="text-gray-600 mx-2">/</span>
                   {httpDuration.max?.toFixed(0) || 0} <span className="text-xs text-gray-500">ms</span>
                 </p>
               </div>
@@ -342,6 +373,30 @@ const TestDetails = ({ testId, onBack }) => {
               </div>
             </div>
           )}
+
+          {/* AI Agent Analysis Path */}
+          <div className="relative rounded-3xl p-8 mt-6 overflow-hidden group border-t border-white/5 bg-[#09090b]">
+            <div className="absolute inset-0 bg-indigo-500/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] border border-indigo-500/20 group-hover:bg-indigo-500/10 transition-all duration-300 rounded-3xl"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500 opacity-10 blur-[100px] rounded-full pointer-events-none group-hover:opacity-20 transition-opacity"></div>
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-indigo-400" /> AI Diagnostic Agent
+                </h3>
+                <p className="text-gray-400 text-sm max-w-2xl leading-relaxed">
+                  {metrics.errorRate > 0
+                    ? `Test degraded with a ${metrics.errorRate?.toFixed(2)}% error rate. Initialize our AI diagnostic agent to analyze this test matrix, pinpoint exact bottlenecks (CPU vs DB Pool vs Rate Limiting), and generate a remediation plan.`
+                    : `Test succeeded! Initialize our AI agent to analyze your latency distributions, throughput stability, and uncover potential edge-case optimizations.`}
+                </p>
+              </div>
+              <button
+                onClick={() => alert("AI Analysis Agent initialization sequence will go here!")}
+                className="shrink-0 px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl shadow-[0_0_20px_rgba(79,70,229,0.3)] transition-all flex items-center gap-2 border border-indigo-500/50"
+              >
+                <Zap className="w-4 h-4 fill-white/20" /> Run AI Analysis
+              </button>
+            </div>
+          </div>
 
         </div>
       )}
